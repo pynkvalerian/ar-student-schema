@@ -3,16 +3,10 @@ require 'date'
 
 class Student < ActiveRecord::Base
 # implement your Student model here
-attr_accessor :name,:first_name,:last_name,:gender,:birthday,:email,:phone,:address
-  def initialize(details = {})
-    @first_name = details[:first_name]
-    @last_name = details[:last_name]
-    @gender = details[:gender]
-    @birthday = details[:birthday]
-    @email = details[:email]
-    @phone = details[:phone]
-    @address = details[:address]
-  end
+
+validates :age, :numericality => { :greater_than_or_equal_to => 5}
+validates :email, :format => { :with => /\w[@]{1,}\w{1,}[.]\w{2,}/ }, uniqueness: true
+validates :phone, :format => { :with => /1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?/}
 
   def name
     @name = @first_name.concat(" " + @last_name)
@@ -20,15 +14,9 @@ attr_accessor :name,:first_name,:last_name,:gender,:birthday,:email,:phone,:addr
 
   def age
     now = Date.today.year
-    birthday = @birthday.year
+    birthday = self.birthday.year
     age = now - birthday - 1
-    age
   end
 
 end
-
-# chester = Student.new(name:, gender:, birthday:, email:, :phone, :address)
-# chester.name #= 'Chester'
-
-# Student.new(first_name: "Chester", last_name: "John", gender: "Male", birthday: "1990-6-16", email: "chstrjhn@gmail.com", phone: 56565575, address: "Cyberjaya")
 
