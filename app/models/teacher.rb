@@ -8,3 +8,5 @@ class Teacher < ActiveRecord::Base
   validates :email, :format => { :with => /\w[@]{1,}\w{1,}[.]\w{2,}/ }, uniqueness: true
 
 end
+
+p Teacher.all

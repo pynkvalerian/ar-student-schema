@@ -23,3 +23,4 @@ validates :phone, :format => { :with => /1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2}
 
 end
 
+p Student.all
