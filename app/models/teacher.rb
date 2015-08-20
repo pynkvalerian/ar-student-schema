@@ -9,4 +9,4 @@ class Teacher < ActiveRecord::Base
 
 end
 
-p Teacher.all
+# p Teacher.all
